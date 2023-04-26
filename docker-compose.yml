@@ -24,7 +24,7 @@ services:
       - '10009:10009'
       - '9735:9735'
   tarod:
-    image: polarlightning/tarod:2022.12.28-master
+    image: huhwhat/tarod-polar:0.1.1-alpha
     container_name: tarod
     environment:
       USERID: ${USERID:-1000}
