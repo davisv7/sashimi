@@ -15,3 +15,5 @@ Thanks:
 https://hub.docker.com/r/polarlightning
 
 https://github.com/royllo/lnd-taro-with-docker
+
+https://github.com/vulpemventures/nigiri
