@@ -1,5 +1,6 @@
 # 🍣 sashimi
-Minimal docker setup to run a testnet lnd/taro node.
+Minimal docker setup to run a testnet node with lnd and taro.
+
 
 ## Setup
  
