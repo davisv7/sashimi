@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  lnd:
+    image: polarlightning/lnd:0.16.0-beta
+    container_name: lnd
+    environment:
+      USERID: ${USERID:-1000}
+      GROUPID: ${GROUPID:-1000}
+    hostname: lnd
+    command: >-
+      lnd --externalip=lnd
+      --tlsextradomain=lnd
+      --tlsextradomain=my_network
+    restart: unless-stopped
+    volumes:
+      - ./volumes/lnd:/home/lnd/.lnd
+    stop_grace_period: 5m30s
+    expose:
+      - '8080'
+      - '10009'
+      - '9735'
+    ports:
+      - '8081:8080'
+      - '10001:10009'
+      - '9735:9735'
+  tarod:
+    image: polarlightning/tarod:2022.12.28-master
+    container_name: tarod
+    environment:
+      USERID: ${USERID:-1000}
+      GROUPID: ${GROUPID:-1000}
+    hostname: tarod
+    command: >-
+      tarod --lnd.host=lnd:10009
+    restart: always
+    volumes:
+      - ./volumes/tarod/:/home/taro/.taro
+      - ./volumes/lnd/:/home/lnd/.lnd
+    expose:
+      - '3001'
+      - '10029'
+    ports:
+      - '3001:3001'
+      - '10029:10029'
+networks:
+  default:
+    name: my_network
