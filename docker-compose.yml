@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   lnd:
-    image: polarlightning/lnd:0.16.0-beta
+    image: polarlightning/lnd:0.16.2-beta
     container_name: lnd
     environment:
       USERID: ${USERID:-1000}
@@ -23,18 +23,18 @@ services:
       - '8081:8080'
       - '10009:10009'
       - '9735:9735'
-  tarod:
-    image: huhwhat/tarod-polar:0.1.1-alpha
-    container_name: tarod
+  tapd:
+    image: polarlightning/tapd:0.2.0-alpha
+    container_name: tapd
     environment:
       USERID: ${USERID:-1000}
       GROUPID: ${GROUPID:-1000}
-    hostname: tarod
+    hostname: tapd
     command: >-
-      tarod --lnd.host=lnd:10009
+      tapd --lnd.host=lnd:10009
     restart: always
     volumes:
-      - ./volumes/tarod/:/home/taro/.taro
+      - ./volumes/tap/:/home/tap/.tapd
       - ./volumes/lnd/:/home/lnd/.lnd
     expose:
       - '3001'
