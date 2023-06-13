@@ -34,7 +34,7 @@ services:
       tapd --lnd.host=lnd:10009
     restart: always
     volumes:
-      - ./volumes/tap/:/home/tap/.tap
+      - ./volumes/tap/:/home/tap/.tapd
       - ./volumes/lnd/:/home/lnd/.lnd
     expose:
       - '3001'
