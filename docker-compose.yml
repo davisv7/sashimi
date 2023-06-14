@@ -35,6 +35,7 @@ services:
     restart: always
     volumes:
       - ./volumes/tap/:/home/tap/.tapd
+      - ./volumes/tap/:/home/tap/.tap
       - ./volumes/lnd/:/home/lnd/.lnd
     expose:
       - '3001'
